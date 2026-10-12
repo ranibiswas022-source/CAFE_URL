@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-bg text-textPrimary font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img { @apply max-w-full; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-gold text-espresso font-semibold px-6 py-3 rounded-sm
+           hover:bg-[#c49060] transition-all duration-300 hover:shadow-gold hover:-translate-y-0.5
+           active:translate-y-0 text-sm tracking-wide;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-white/20 text-white font-medium px-6 py-3
+           rounded-sm hover:border-gold hover:text-gold transition-all duration-300 text-sm tracking-wide;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-textSecondary hover:text-gold transition-colors duration-200
+           text-sm font-medium;
+  }
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight;
+  }
+  .section-title-dark {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-espresso leading-tight;
+  }
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.2em] text-gold font-medium mb-3;
+  }
+  .card-surface {
+    @apply bg-surface border border-border rounded-sm overflow-hidden
+           transition-all duration-300 hover:border-gold/30 hover:-translate-y-1 hover:shadow-card;
+  }
+  .glass-surface {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  .divider {
+    @apply border-t border-border;
+  }
+  .nav-link {
+    @apply text-textSecondary hover:text-white transition-colors duration-200 text-sm font-medium;
+  }
+  .rating-stars {
+    @apply flex items-center gap-0.5;
+  }
+  .input-field {
+    @apply w-full bg-surface border border-border text-white placeholder-textSecondary rounded-sm px-4 py-3
+           focus:outline-none focus:border-gold/50 transition-colors duration-200 text-sm;
+  }
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D4A574 0%, #E8C090 50%, #B8863A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  .animate-in { animation: slideUp 0.6s ease-out forwards; }
+  .img-cover { @apply w-full h-full object-cover; }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #12161F; }
+::-webkit-scrollbar-thumb { background: #2A3040; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #D4A574; }
+
+/* Page transitions */
+.page-enter { opacity: 0; transform: translateY(16px); }
+.page-enter-active { opacity: 1; transform: translateY(0); transition: opacity 400ms, transform 400ms; }
+.page-exit { opacity: 1; }
+.page-exit-active { opacity: 0; transition: opacity 300ms; }
+
+/* Star rating */
+.star-filled { color: #D4A574; }
+.star-empty { color: #2A3040; }
